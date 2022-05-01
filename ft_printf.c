@@ -6,7 +6,7 @@
 /*   By: lancelot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 21:34:52 by lancelot          #+#    #+#             */
-/*   Updated: 2022/04/30 11:00:44 by lancelot         ###   ########.fr       */
+/*   Updated: 2022/05/01 11:14:31 by lancelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,14 @@ int	ft_printf(char *str, ...)
 
 int		main(void)
 {
-	ft_printf("lancelot %d et %d", 4, 2);
+	int		a;
+	int		b;
+	int		*p;
+
+
+	a = 42;
+	b = 20;
+	p = &b;
+	ft_printf("[%p]\n {%i}\n", p, b);
 	return 0;
 }
