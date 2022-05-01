@@ -6,7 +6,7 @@
 /*   By: lancelot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 21:34:52 by lancelot          #+#    #+#             */
-/*   Updated: 2022/05/01 11:14:31 by lancelot         ###   ########.fr       */
+/*   Updated: 2022/05/01 12:38:46 by lancelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ int	ft_printf(char *str, ...)
 
 	va_start(lst, str);
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
-		if(str[i] == '%')
+		if (str[i] == '%')
 		{
 			ft_choice(str[i + 1], lst);
 			i += 2;
 		}
-		if(str[i] != '\0')
+		if (str[i] != '\0')
 		{
 			ft_putchar_fd(str[i], 1);
 			i++;
@@ -41,14 +41,7 @@ int	ft_printf(char *str, ...)
 
 int		main(void)
 {
-	int		a;
-	int		b;
-	int		*p;
-
-
-	a = 42;
-	b = 20;
-	p = &b;
-	ft_printf("[%p]\n {%i}\n", p, b);
+	
+	ft_printf("%p", 0);
 	return 0;
 }

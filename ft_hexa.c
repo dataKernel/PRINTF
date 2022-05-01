@@ -6,7 +6,7 @@
 /*   By: lancelot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:33:45 by lancelot          #+#    #+#             */
-/*   Updated: 2022/05/01 11:12:57 by lancelot         ###   ########.fr       */
+/*   Updated: 2022/05/01 12:38:16 by lancelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	size_long(unsigned long n)
 	i = 0;
 	while (n > 0 || n < 0)
 	{
-		n /= 10;
+		n /= 16;
 		i++;
 	}
 	if (i == 0)
@@ -32,13 +32,13 @@ static int	size_long(unsigned long n)
 void	ft_ptr(unsigned long n)
 {
 	char	*base_16;
-	char	str[11];
+	char	str[17];
 	int		size_str;
 	int		i;
-
+	
 	base_16 = "0123456789abcdef";
 	size_str = size_long(n) - 1;
-	i = size_str - 1;
+	i = size_str;
 	str[i + 1] = '\0';
 	while (i >= 0)
 	{
