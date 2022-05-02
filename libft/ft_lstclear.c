@@ -1,47 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lancelot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 21:34:52 by lancelot          #+#    #+#             */
-/*   Updated: 2022/05/02 09:23:06 by lancelot         ###   ########.fr       */
+/*   Created: 2022/04/21 15:35:09 by lancelot          #+#    #+#             */
+/*   Updated: 2022/04/22 11:38:46 by lancelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <unistd.h>
-#include <stdarg.h>
-#include "libft/libft.h"
-#include "ft_printf.h"
+#include <stdlib.h>
+#include "libft.h"
 
-int	ft_printf(const char *str, ...)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	va_list		lst;
-	int			i;
+	t_list		*current;
 
-	va_start(lst, str);
-	i = 0;
-	while (str[i])
+	if (!lst || !*lst || !del)
+		return ;
+	while (lst && *lst)
 	{
-		if (str[i] == '%')
-		{
-			ft_choice(str[i + 1], lst);
-			i += 2;
-		}
-		if (str[i] != '\0')
-		{
-			ft_putchar_fd(str[i], 1);
-			i++;
-		}
+		current = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = current;
 	}
-	return (0);
-}
-
-int		main(void)
-{
-	int a = 2;
-	ft_printf("ceci: %i", a);
-	return 0;
+	current = NULL;
 }

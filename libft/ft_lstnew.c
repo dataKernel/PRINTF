@@ -1,47 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lancelot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 21:34:52 by lancelot          #+#    #+#             */
-/*   Updated: 2022/05/02 09:23:06 by lancelot         ###   ########.fr       */
+/*   Created: 2022/04/19 16:10:34 by lancelot          #+#    #+#             */
+/*   Updated: 2022/04/21 10:47:14 by lancelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <unistd.h>
-#include <stdarg.h>
-#include "libft/libft.h"
-#include "ft_printf.h"
+#include <stdlib.h>
+#include "libft.h"
 
-int	ft_printf(const char *str, ...)
+t_list	*ft_lstnew(void *content)
 {
-	va_list		lst;
-	int			i;
+	t_list		*head;
 
-	va_start(lst, str);
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '%')
-		{
-			ft_choice(str[i + 1], lst);
-			i += 2;
-		}
-		if (str[i] != '\0')
-		{
-			ft_putchar_fd(str[i], 1);
-			i++;
-		}
-	}
-	return (0);
-}
-
-int		main(void)
-{
-	int a = 2;
-	ft_printf("ceci: %i", a);
-	return 0;
+	head = NULL;
+	head = (t_list *)malloc(sizeof(t_list));
+	if (!head)
+		return (NULL);
+	head->content = content;
+	head->next = NULL;
+	return (head);
 }

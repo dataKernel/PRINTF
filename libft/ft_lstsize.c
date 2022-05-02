@@ -1,47 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lancelot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 21:34:52 by lancelot          #+#    #+#             */
-/*   Updated: 2022/05/02 09:23:06 by lancelot         ###   ########.fr       */
+/*   Created: 2022/04/19 21:25:31 by lancelot          #+#    #+#             */
+/*   Updated: 2022/04/21 10:53:43 by lancelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <unistd.h>
-#include <stdarg.h>
-#include "libft/libft.h"
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *str, ...)
+int	ft_lstsize(t_list *lst)
 {
-	va_list		lst;
-	int			i;
+	int		size_lst;
 
-	va_start(lst, str);
-	i = 0;
-	while (str[i])
+	size_lst = 0;
+	while (lst)
 	{
-		if (str[i] == '%')
-		{
-			ft_choice(str[i + 1], lst);
-			i += 2;
-		}
-		if (str[i] != '\0')
-		{
-			ft_putchar_fd(str[i], 1);
-			i++;
-		}
+		size_lst++;
+		lst = lst->next;
 	}
-	return (0);
-}
-
-int		main(void)
-{
-	int a = 2;
-	ft_printf("ceci: %i", a);
-	return 0;
+	return (size_lst);
 }

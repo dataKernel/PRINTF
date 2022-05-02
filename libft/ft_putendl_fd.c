@@ -1,47 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lancelot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 21:34:52 by lancelot          #+#    #+#             */
-/*   Updated: 2022/05/02 09:23:06 by lancelot         ###   ########.fr       */
+/*   Created: 2022/04/15 10:28:11 by lancelot          #+#    #+#             */
+/*   Updated: 2022/04/18 12:12:19 by lancelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <unistd.h>
-#include <stdarg.h>
-#include "libft/libft.h"
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *str, ...)
+void	ft_putendl_fd(char *s, int fd)
 {
-	va_list		lst;
-	int			i;
-
-	va_start(lst, str);
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '%')
-		{
-			ft_choice(str[i + 1], lst);
-			i += 2;
-		}
-		if (str[i] != '\0')
-		{
-			ft_putchar_fd(str[i], 1);
-			i++;
-		}
-	}
-	return (0);
-}
-
-int		main(void)
-{
-	int a = 2;
-	ft_printf("ceci: %i", a);
-	return 0;
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }

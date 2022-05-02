@@ -6,18 +6,19 @@
 /*   By: lancelot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:33:45 by lancelot          #+#    #+#             */
-/*   Updated: 2022/05/01 12:38:16 by lancelot         ###   ########.fr       */
+/*   Updated: 2022/05/02 08:14:18 by lancelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
-#include "libft.h"
+#include "libft/libft.h"
+#include "ft_printf.h"
 
 static int	size_long(unsigned long n)
 {
 	int		i;
-	
+
 	i = 0;
 	while (n > 0 || n < 0)
 	{
@@ -29,14 +30,17 @@ static int	size_long(unsigned long n)
 	return (i);
 }
 
-void	ft_ptr(unsigned long n)
+void	ft_ptr(unsigned long n, bool base_upper, bool ptr)
 {
 	char	*base_16;
 	char	str[17];
 	int		size_str;
 	int		i;
-	
-	base_16 = "0123456789abcdef";
+
+	if (base_upper == false)
+		base_16 = "0123456789abcdef";
+	else
+		base_16 = "0123456789ABCDEF";
 	size_str = size_long(n) - 1;
 	i = size_str;
 	str[i + 1] = '\0';
@@ -46,6 +50,7 @@ void	ft_ptr(unsigned long n)
 		n /= 16;
 		i--;
 	}
-	write(1, "0x", 2);
+	if (ptr == true)
+		write(1, "0x", 2);
 	ft_putstr_fd(str, 1);
 }

@@ -1,47 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lancelot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 21:34:52 by lancelot          #+#    #+#             */
-/*   Updated: 2022/05/02 09:23:06 by lancelot         ###   ########.fr       */
+/*   Created: 2022/04/21 16:03:24 by lancelot          #+#    #+#             */
+/*   Updated: 2022/04/22 12:56:57 by lancelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <unistd.h>
-#include <stdarg.h>
-#include "libft/libft.h"
-#include "ft_printf.h"
+#include <stdlib.h>
+#include "libft.h"
 
-int	ft_printf(const char *str, ...)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	va_list		lst;
-	int			i;
+	t_list		*head;
+	t_list		*current;
+	t_list		*new;
 
-	va_start(lst, str);
-	i = 0;
-	while (str[i])
+	head = NULL;
+	current = lst;
+	while (current)
 	{
-		if (str[i] == '%')
+		new = ft_lstnew(f(current->content));
+		if (!new)
 		{
-			ft_choice(str[i + 1], lst);
-			i += 2;
+			ft_lstclear(&head, del);
+			return (NULL);
 		}
-		if (str[i] != '\0')
-		{
-			ft_putchar_fd(str[i], 1);
-			i++;
-		}
+		ft_lstadd_back(&head, new);
+		current = current->next;
 	}
-	return (0);
-}
-
-int		main(void)
-{
-	int a = 2;
-	ft_printf("ceci: %i", a);
-	return 0;
+	return (head);
 }

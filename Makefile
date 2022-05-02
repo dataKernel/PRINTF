@@ -1,4 +1,4 @@
-SRCS = ft_printf.c ft_choice.c
+SRCS = ft_printf.c ft_choice.c ft_hexa.c
 
 OBJS = ${SRCS:.c=.o}
 
@@ -19,11 +19,14 @@ RANLIB = ranlib
 .c.o:
 		${CC} ${CFLAGS} -c $< -o ${<:.c=.o} -I ${HEAD}
 
-${NAME}: ${OBJS}
-	${AR} ${NAME} ${OBJS} libft.a
+${NAME}: ${OBJS} ./libft/libft.a
+	${AR} ${NAME} ${OBJS} ./libft/libft.a
 	${RANLIB} ${NAME}
 
 all: ${NAME}
+
+libft/libft.a:
+	make -C libft
 
 clean: 
 	${RM} ${OBJS}
