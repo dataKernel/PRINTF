@@ -1,10 +1,8 @@
-SRCS = ft_printf.c ft_choice.c ft_hexa.c
+SRCS = ft_printf.c ft_choice.c ft_hexa.c ft_putnbr.c
 
 OBJS = ${SRCS:.c=.o}
 
 NAME = libftprintf.a
-
-HEAD = includes
 
 GCC = gcc
 
@@ -17,10 +15,10 @@ AR = ar rc
 RANLIB = ranlib
 
 .c.o:
-		${CC} ${CFLAGS} -c $< -o ${<:.c=.o} -I ${HEAD}
+		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}: ${OBJS} ./libft/libft.a
-	${AR} ${NAME} ${OBJS} ./libft/libft.a
+	${AR} ${NAME} ${OBJS} ./libft/*.o
 	${RANLIB} ${NAME}
 
 all: ${NAME}

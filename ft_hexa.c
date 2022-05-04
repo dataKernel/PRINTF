@@ -6,7 +6,7 @@
 /*   By: lancelot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:33:45 by lancelot          #+#    #+#             */
-/*   Updated: 2022/05/02 08:14:18 by lancelot         ###   ########.fr       */
+/*   Updated: 2022/05/02 20:17:04 by lancelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	size_long(unsigned long n)
 	return (i);
 }
 
-void	ft_ptr(unsigned long n, bool base_upper, bool ptr)
+int	ft_ptr(unsigned long n, bool base_upper, bool ptr)
 {
 	char	*base_16;
 	char	str[17];
@@ -53,4 +53,5 @@ void	ft_ptr(unsigned long n, bool base_upper, bool ptr)
 	if (ptr == true)
 		write(1, "0x", 2);
 	ft_putstr_fd(str, 1);
+	return (ft_strlen(str));
 }
